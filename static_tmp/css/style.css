@@ -213,12 +213,12 @@ footer {
     width: 335px;
     height: 50px;
     background: #DAD6CE;
+    background: rgba(218, 214, 206, .8);
     border: 1px solid #B9B9B9;
     border-radius: 4px;
     position: absolute;
     bottom: 5%;
     left: 36%;
-    opacity: .8;
 }
 
 
