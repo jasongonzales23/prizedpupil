@@ -122,13 +122,13 @@ footer {
     border-top:1px solid #afab9d;
 }
 
-/*====== CREATE STYLES =======================================================*/
+/*====== "CREATE" STYLES =======================================================*/
 .create #main {
     padding:60px 0;
 }
 .container {
     background-color: #eeeeee;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#d1d1d1)); 
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f8f7f3), to(#dedbd3)); 
     background-image: -webkit-linear-gradient(top, #eeeeee, #d1d1d1); 
     background-image:    -moz-linear-gradient(top, #eeeeee, #d1d1d1); 
     background-image:     -ms-linear-gradient(top, #eeeeee, #d1d1d1); 
@@ -157,43 +157,75 @@ footer {
     margin:0;
     color:#4f493c;
     font-weight:lighter;
+    border-bottom:1px solid #4f493c;
+    box-shadow:0 1px 0px #fff;
 }
 
 .object {
-    height: 80px;
+    height: 125px;
     width: 80px;
-    background:#444;
-    color: white;
-    padding: 5px;
+    background:transparent url(../img/objekt.png) top right no-repeat;
+    color: #4f493c;
+    /*padding: 5px;*/
     margin: 0px 0px 20px 20px;
     float: left;
     font-size: 11px;
     text-overflow: ellipis;
+    overflow:hidden;
     cursor: move;
     -moz-transition: all 300ms ease-in-out;
     -o-transition: all 300ms ease-in-out;
     -webkit-transition: all 300ms ease-in-out;
     transition: all 300ms ease-in-out;
-}
-
-a.object , a:active.object, a:visited.object {
-    color:#fff;
-    text-decoration:none;
+    position:relative;
 }
 
 .object.droparea {
-    padding:5px 5px 5px 110px;
+    padding:0px 0px 0px 80px;
     -moz-transition: all 300ms ease-in-out;
     -o-transition: all 300ms ease-in-out;
     -webkit-transition: all 300ms ease-in-out;
     transition: all 300ms ease-in-out;
 }
 
-
 .object.toolbox {
-    margin: 0px 20px 20px 0px;
+    /*margin: 0px 20px 20px 0px;*/
+    width:27px;
+    height:37px;
+    margin:8px 28px 0 33px;
+    padding:0;
 }
 
+.object .title {
+    position:absolute;
+    bottom:0;
+}
+
+.container.toolbox {
+    width:166px;
+    height:35px;
+    padding:0;
+    margin:8px 28px 0 0;
+    clear:none;
+}
+
+.toolbar {
+    width: 335px;
+    height: 50px;
+    background: #DAD6CE;
+    border: 1px solid #B9B9B9;
+    border-radius: 4px;
+    position: absolute;
+    bottom: 5%;
+    left: 36%;
+    opacity: .8;
+}
+
+
+.toolbar .object {
+    
+    
+}
 /*====== END CREATE STYLES ===================================================*/
 
 

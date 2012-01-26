@@ -15,7 +15,7 @@ jQuery.fn.center = function () {
 //GLOBAL VARS
 i=0;
 var notAllowedImg = document.createElement('img');
-notAllowedImg.src = "img/nope.png";
+//notAllowedImg.src = "{{STATIC_URL}}/img/nope.png";
 notAllowedImg.width = 32;
 var modalCloseButton = '<a class="close">x</a>';
 
@@ -132,7 +132,7 @@ $(document).ready(function(){
     function getObj(objType){
         //this is fake, we need to make this JSON or something
         if ($(currentlyDragged).hasClass('object')){
-            var obj = '<div class="object" href="#" draggable="true" id="'+ objType + i +'">'+ objName +'</div>';
+            var obj = '<div class="object" href="#" draggable="true" id="'+ objType + i +'"><span class="title">Dbl-Click to Edit</span></div>';
         }
         if ($(currentlyDragged).hasClass('container')){
             var obj = '<div class="container dropped" id="container'+ i +'"><div class="draghandle"><h2 contenteditable>Container</h2></div></div> <!--#END CONTAINER-->';
@@ -161,18 +161,27 @@ $(document).ready(function(){
     }
     
     function ObjDragenter(e){
-	//console.log(currentlyDragged);
-        if (currentlyDragged.id !== this.id) {
-	    $(this).addClass('droparea');
-	}
+//        var targ = e.target;
+//        if (targ.className ==='title' ){
+//            $(this.parentNode).addClass('droparea');
+//            return;
+//        }
+//
+//        if (currentlyDragged.id !== this.id) {
+//	    $(this).addClass('droparea');
+//	}
         e.preventDefault();
     }
     
     function ObjDragover(e){
+        if (currentlyDragged.id !== this.id) {
+	    $(this).addClass('droparea');
+	}
 	e.preventDefault();
     }
     
     function ObjDragleave(e){
+        console.log(e.target);
 	$(this).removeClass('droparea');
     }
     
