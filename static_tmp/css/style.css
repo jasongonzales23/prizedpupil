@@ -65,6 +65,10 @@ td { vertical-align: top; }
 /* ==|== primary styles =====================================================
    Author: Jason Gonzales
    ========================================================================== */
+body {
+    font-family:'Signika Negative';
+}
+
 
 header {
     height:100px;
@@ -72,6 +76,12 @@ header {
     box-shadow:0 1px 5px #dbdbdb;
     border-bottom:1px solid #afab9d;
     position:relative;
+}
+
+header h2 {
+    margin: 0px 0 0 180px;
+    padding: 44px 0 0 0;
+    font-size: 48px;
 }
 
 .row {
@@ -97,7 +107,7 @@ header {
 
 .logo a {
     display:block;
-    height:100%;
+    height:50%;
     width:100%;
 }
 
@@ -106,14 +116,86 @@ header {
     background:url(../img/diagonal_bg.png) 0 0 repeat;
 }
 
-
-
-
 footer {
     background:url(../img/fiber_bg.png) 0 0;
     box-shadow:0 -1px 5px #dbdbdb;
     border-top:1px solid #afab9d;
 }
+
+/*====== CREATE STYLES =======================================================*/
+.create #main {
+    padding:60px 0;
+}
+.container {
+    background-color: #eeeeee;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#d1d1d1)); 
+    background-image: -webkit-linear-gradient(top, #eeeeee, #d1d1d1); 
+    background-image:    -moz-linear-gradient(top, #eeeeee, #d1d1d1); 
+    background-image:     -ms-linear-gradient(top, #eeeeee, #d1d1d1); 
+    background-image:      -o-linear-gradient(top, #eeeeee, #d1d1d1); 
+    background-image:         linear-gradient(to bottom, #eeeeee, #d1d1d1);
+    color: white;
+    padding: 0px 0 20px 0px;
+    margin: 20px 20px 20px 0;
+    overflow: auto;
+    clear:both;
+    -moz-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    -webkit-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+    border:1px solid #444;
+    display:block;
+    cursor:move;
+}
+
+.draghandle {
+    padding:10px 20px;
+    margin:0 0 20px 0;
+}
+
+.container h2 {
+    margin:0;
+    color:#4f493c;
+    font-weight:lighter;
+}
+
+.object {
+    height: 80px;
+    width: 80px;
+    background:#444;
+    color: white;
+    padding: 5px;
+    margin: 0px 0px 20px 20px;
+    float: left;
+    font-size: 11px;
+    text-overflow: ellipis;
+    cursor: move;
+    -moz-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    -webkit-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+
+a.object , a:active.object, a:visited.object {
+    color:#fff;
+    text-decoration:none;
+}
+
+.object.droparea {
+    padding:5px 5px 5px 110px;
+    -moz-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    -webkit-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+
+
+.object.toolbox {
+    margin: 0px 20px 20px 0px;
+}
+
+/*====== END CREATE STYLES ===================================================*/
+
 
 /* ==|== non-semantic helper classes ======================================== */
 .ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; }

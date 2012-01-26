@@ -2,7 +2,7 @@
 Jason Gonzales, Lewis Mann
 */
 
-/*___________________________________*/
+/*____________BEGIN BOOTSTRAP LIBRARY_______________________*/
 jQuery.fn.center = function () {
     this.css("position","absolute");
     this.css("top", ( $(window).height() - this.height() ) / 2+$(window).scrollTop() + "px");
@@ -10,18 +10,18 @@ jQuery.fn.center = function () {
     return this;
 }
 
-/*___________________________________*/
+/*____________END BOOTSTRAP LIBRARY_______________________*/
 
 //GLOBAL VARS
 i=0;
-var notAllowedImg = document.createElement('img');
-notAllowedImg.src = "img/nope.png";
-notAllowedImg.width = 32;
 var modalCloseButton = '<a class="close">x</a>';
 
-
 $(document).ready(function(){
-    //this makes the items in the footer toggle on click    
+
+// fixes visual cues in IE and Chrome.
+DragDropHelpers.fixVisualCues=true;
+
+    //this make the widgets in the footer toggle on click    
     $('footer').find('li').click(function(e){
         var links = $('footer > ul > li');
         links.each(function () {
@@ -32,14 +32,11 @@ $(document).ready(function(){
                 $(this).find('.footerWidget').toggle();
             }
         });
-	e.stopPropagation();
     });
     
-    /*
     $('footer').find('li').children().click(function(e){
 	e.stopPropagation();
     });
-    */
     
     $('.footerWidget').find('h3').click(function(e){ 
         $('.open').removeClass();
@@ -59,7 +56,7 @@ $(document).ready(function(){
     
     /*________________#BEGIN MODAL CONTENT TYPES_______________________*/
     function modalError(){
-	//console.log('modal error');
+	console.log('modal error');
     }
  
     function courseReader(){
@@ -94,7 +91,7 @@ $(document).ready(function(){
 	    modalError(); //need to write a full function
 	}
 	else {
-	    //console.log('the modal opened');
+	    console.log('the modal opened');
 	    $("#blanket").addClass("live-blanket");
 	    $("#modal").show().addClass("live-modal");
 	    $("#modal-content").addClass("live-modal-content");
@@ -124,31 +121,12 @@ $(document).ready(function(){
     
     /*______________#BEGIN Drag and Drop Scripts______________________*/
     
-    // jQuery does not support dataTransfer
-    // Originally solved by Tim Branyen in his drop file plugin
-    // http://dev.aboutnerd.com/jQuery.dropFile/jquery.dropFile.js
-    jQuery.event.props.push('dataTransfer');
-    
-    function getObj(objType){
-        //this is fake, we need to make this JSON or something
-        if ($(currentlyDragged).hasClass('object')){
-            var obj = '<div class="object" href="#" draggable="true" id="'+ objType + i +'">'+ objName +'</div>';
-        }
-        if ($(currentlyDragged).hasClass('container')){
-            var obj = '<div class="container dropped" id="container'+ i +'"><div class="draghandle"><h2 contenteditable>Container</h2></div></div> <!--#END CONTAINER-->';
-        }
-        return obj;
-    }
-    
     /*______________#BEGIN OBJECTS Drag and Drop functions____________*/
     function ObjDragStart(e){
         currentlyDragged = this;
-        objType = this.id;
+        objType = $(this).attr('class');
         objName = $(this).text();
-	this.style.opacity = '0.2';
-	e.dataTransfer.effectAllowed = 'move';
-	e.dataTransfer.setData('text/html', this.innerHTML);
-        //console.log('starting! currentlyDragged= ' + currentlyDragged);
+        //console.log('starting! cuurentlyDragged= ' + currentlyDragged);
     }
     
     function ObjDrag(e){
@@ -156,15 +134,13 @@ $(document).ready(function(){
     }
     
     function ObjDragEnd(e){
-        //console.log('dragEnd');
-	this.style.opacity = '1';
+        console.log('dragEnd');
     }
     
     function ObjDragenter(e){
-	//console.log(currentlyDragged);
         if (currentlyDragged.id !== this.id) {
-	    $(this).addClass('droparea');
-	}
+            $(this).addClass('droparea');
+            }
         e.preventDefault();
     }
     
@@ -177,45 +153,44 @@ $(document).ready(function(){
     }
     
     function ObjDrop(e){
-	//console.log('obj drop fired');
         $(this).removeClass('droparea');
-	var obj = currentlyDragged;
-        if($(currentlyDragged).hasClass('toolbox')){
-		var obj = getObj(objType);
-		//$(this).append(obj);
-	    }
-            
-        $(obj).insertBefore(this);
+	$(currentlyDragged).insertBefore(this);
     }
     
-    /*_______________#BEGIN CONTAINERS Drag and Drop functions__________________*/
+    /*_______________#BEGIN CONTAINERS Drag and Dropfunctions__________________*/
+    
+    function getObj(objType){
+        //this is fake, we need to make this JSON or something
+        if ($(currentlyDragged).hasClass('object')){
+            var obj = '<a class="object" href="#" draggable="true" id="'+ objType + i +'">'+ objName +'</a>';
+        }
+        if ($(currentlyDragged).hasClass('container')){
+            var obj = '<div class="container dropped" id="container'+ i +'"><div class="draghandle"><h2 contenteditable>+ Container</h2></div></div> <!--#END CONTAINER-->';
+        }
+        return obj;
+    }
+    
     function ContainerDragOver(e){
         //console.log('dragOver');
-	if($(currentlyDragged).hasClass('container')){  //get feedback when you cannot drop container
-	    //e.dataTransfer.effectAllowed = 'none';	//well, crap, something is 'undefined' here...
-	    //return false;
-	    e.dataTransfer.setDragImage(notAllowedImg, -10, -10);
-	    e.dataTransfer.dropEffect = 'none';
-	}
         e.preventDefault();
     }
     
     function ContainerDropEvent(e){
-	if($(currentlyDragged).hasClass('container')){
-	    
-	    return false;
-	}
-	if ($(e.target).hasClass('container')){
-	    if($(currentlyDragged).hasClass('toolbox')){
-		var obj = getObj(objType);
-		$(this).append(obj);
-		i++;
-	    }
-	    else{
-		$(currentlyDragged).appendTo(this);
-	    }
-	    return false;
-	}
+        if ($(e.target).hasClass('container')){
+            if($(currentlyDragged).hasClass('toolbox')){
+            var obj = getObj(objType);
+            $(this).append(obj);
+            i++;
+            }
+            else{
+                //var obj = getObj(objType);
+                //$(this).append(obj);
+                $(currentlyDragged).appendTo(this);
+            }
+            //$(currentlyDragged).removeClass('droparea');
+            e.preventDefault();
+            return false;
+            }
     }
     
     /*_______________#BEGIN COURSE DROP AREA Drag and Drop functions____________________*/
@@ -273,9 +248,9 @@ $(document).ready(function(){
     /*_____________#BEGIN WEEKLY READING AND PREP LOADER_____________________*/
     $('.course').each(function(i, el){
 	var $thisID = this.id;
-	//console.log($thisID);
+	console.log($thisID);
 	var appendEl = $(this).find('.upcoming-items');
-	//console.log(appendEl);
+	console.log(appendEl);
 	//appendEl.append('Hi!');
 	
 	$.ajax({
@@ -301,5 +276,4 @@ $(document).ready(function(){
     })    
     /*_____________#END MODAL WITH AJAX CONTENT CODE (EXAMPLE IS FOR ADDING APPS TO HOME PAGE)____________*/
     
-
 });

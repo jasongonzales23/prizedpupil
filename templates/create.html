@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block page_title %}Create -- Prized Pupil{% endblock %}
+{% block body_class %}create{% endblock %}
+
+
+{% block header_content%}<h2>Create</h2>{% endblock %}
+
+{% block base_content %}
+<div class="marquee" id="course">
+    <div class="container dropped" draggable="true" id="syllabus">
+	<div class="draghandle">
+	    <h2>Syllabus</h2>
+	</div>
+	<div id="cd1" class="object" draggable="true">
+	    Course Description
+	</div>
+	<div id="pq1" class="object dropped" draggable="true">
+	    Prereqs
+	</div>
+	<div id="oc1" class="object dropped" draggable="true">
+	    Outcomes
+	</div>
+	<div id="rm1" class="object dropped" draggable="true">
+	    Required Materials
+	</div>
+	<div id="om1" class="object dropped" draggable="true">
+	    Optional Materials
+	</div>
+	<div id="comm1" class="object dropped" draggable="true">
+	    Communications
+	</div>
+	<div id="sr1" class="object dropped" draggable="true">
+	    Student Responsibilities
+	</div>
+	<div id="gp1" class="object dropped" draggable="true">
+	    Grading Policies
+	</div>
+	<div id="srp1" class="object dropped" draggable="true">
+	    Submission & Return Policy
+	</div>
+	<div id="sched1" class="object dropped" draggable="true">
+	    Schedule
+	</div>
+	<div id="aa1" class="object dropped" draggable="true">
+	    Academic Assessment
+	</div>
+	<div id="ai1" class="object dropped" draggable="true">
+	    Academic Integrity
+	</div>
+	<div id="asup1" class="object dropped" draggable="true">
+	    Academic Support
+	</div>
+	<div id="accom1" class="object dropped" draggable="true">
+	    Accomodations for Disabilities
+	</div>
+    </div> <!--#END CONTAINER-->
+    <div class="container dropped" draggable="true" id="unit-one">
+	<div class="draghandle">
+	    <h2>Syllabus</h2>
+	</div>
+    </div>
+    
+    <div class="toolbar">
+	<div class="object toolbox" draggable="true" id="assignment">
+            Assignment
+        </div>
+	<div class="container toolbox" draggable="true" id="toolvar-container">
+	    <div class="draghandle"><h2>Container</h2></div>
+	</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer_content %}
+
+{% endblock%}

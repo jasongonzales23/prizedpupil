@@ -132,7 +132,7 @@ $(document).ready(function(){
     function getObj(objType){
         //this is fake, we need to make this JSON or something
         if ($(currentlyDragged).hasClass('object')){
-            var obj = '<div class="object" href="#" draggable="true" id="'+ objType + i +'">'+ objName +'</div>';
+            var obj = '<a class="object" href="#" draggable="true" id="'+ objType + i +'">'+ objName +'</a>';
         }
         if ($(currentlyDragged).hasClass('container')){
             var obj = '<div class="container dropped" id="container'+ i +'"><div class="draghandle"><h2 contenteditable>Container</h2></div></div> <!--#END CONTAINER-->';
@@ -179,13 +179,7 @@ $(document).ready(function(){
     function ObjDrop(e){
 	//console.log('obj drop fired');
         $(this).removeClass('droparea');
-	var obj = currentlyDragged;
-        if($(currentlyDragged).hasClass('toolbox')){
-		var obj = getObj(objType);
-		//$(this).append(obj);
-	    }
-            
-        $(obj).insertBefore(this);
+	$(currentlyDragged).insertBefore(this);
     }
     
     /*_______________#BEGIN CONTAINERS Drag and Drop functions__________________*/

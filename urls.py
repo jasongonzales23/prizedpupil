@@ -8,6 +8,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', direct_to_template,  {'template':'home.html'}),
+    url(r'^create$', direct_to_template, {'template':'create.html'}),
     # url(r'^prizedpupil/', include('prizedpupil.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
